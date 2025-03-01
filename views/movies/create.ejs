@@ -1,0 +1,82 @@
+<div class="row">
+	<div class="col-md-6 offset-md-3">
+		<h2>Yeni Film Ekle</h2>
+		<form action="/movies/create" method="POST">
+			<div class="mb-3">
+				<label for="title" class="form-label">Film Adı</label>
+				<input
+					type="text"
+					class="form-control"
+					id="title"
+					name="title"
+					required
+				/>
+			</div>
+
+			<div class="mb-3">
+				<label for="release_year" class="form-label">Yayın Yılı</label>
+				<input
+					type="number"
+					class="form-control"
+					id="release_year"
+					name="release_year"
+					required
+				/>
+			</div>
+
+			<div class="mb-3">
+				<label for="duration" class="form-label">Süre (dakika)</label>
+				<input
+					type="number"
+					class="form-control"
+					id="duration"
+					name="duration"
+					required
+				/>
+			</div>
+
+			<div class="mb-3">
+				<label class="form-label">Türler</label>
+				<div class="border rounded p-3">
+					<% genres.forEach(genre => { %>
+					<div class="form-check">
+						<input
+							class="form-check-input"
+							type="checkbox"
+							name="genreIds"
+							value="<%= genre.id %>"
+							id="genre<%= genre.id %>"
+						/>
+						<label class="form-check-label" for="genre<%= genre.id %>">
+							<%= genre.name %>
+						</label>
+					</div>
+					<% }) %>
+				</div>
+			</div>
+
+			<div class="mb-3">
+				<label class="form-label">Oyuncular</label>
+				<div class="border rounded p-3">
+					<% actors.forEach(actor => { %>
+					<div class="form-check">
+						<input
+							class="form-check-input"
+							type="checkbox"
+							name="actorIds"
+							value="<%= actor.id %>"
+							id="actor<%= actor.id %>"
+						/>
+						<label class="form-check-label" for="actor<%= actor.id %>">
+							<%= actor.name %>
+						</label>
+					</div>
+					<% }) %>
+				</div>
+			</div>
+
+			<button type="submit" class="btn btn-primary">Kaydet</button>
+			<a href="/movies" class="btn btn-secondary">İptal</a>
+		</form>
+	</div>
+</div>
